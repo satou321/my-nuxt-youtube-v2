@@ -17,6 +17,10 @@
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.18.9"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/satou321/my-nuxt-youtube-v2.git",
+  "license": "MIT"
 }
