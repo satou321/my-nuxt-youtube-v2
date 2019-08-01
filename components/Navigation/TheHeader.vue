@@ -26,7 +26,7 @@
 
     async beforeMount() {
       //★
-      this.$store.dispatch("auth/userListener").catch(e => console.log(e));
+      this.$store.dispatch("auth/userListener").catch(e => console.log("dispatch userListener",e));
     },
     computed: {
       ...mapGetters("userData", ["user"]),

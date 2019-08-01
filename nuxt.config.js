@@ -37,6 +37,7 @@ export default {
   */
   plugins: [
     "~plugins/firebase.js",
+    "~plugins/axios.js",
   ],
   /*
   ** Nuxt.js dev-modules
@@ -61,7 +62,13 @@ export default {
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
-  axios: {},
+  axios: {
+    proxyHeaders: false,
+    proxy: false,
+    baseURL: envSet.VIDEO_API_URL,
+    browserBaseURL: envSet.VIDEO_API_URL,
+    credentials: false,
+  },
   /*
   ** vuetify module configuration
   ** https://github.com/nuxt-community/vuetify-module
@@ -69,7 +76,7 @@ export default {
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
     theme: {
-      dark: true,
+      dark: false,
       themes: {
         dark: {
           primary: colors.blue.darken2,

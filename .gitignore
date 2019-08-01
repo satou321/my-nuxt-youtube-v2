@@ -87,3 +87,4 @@ sw.*
 # Mac OSX
 .DS_Store
 /config/env.development.js
+/config/env.stage.js
