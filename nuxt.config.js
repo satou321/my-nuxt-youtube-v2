@@ -1,6 +1,5 @@
 const environment = process.env.NODE_ENV || 'development';
 const envSet = require(`./config/env.${environment}.js`);
-
 import colors from 'vuetify/es5/util/colors';
 
 export default {
@@ -105,4 +104,5 @@ export default {
     port: envSet.PORT || process.env.PORT,// || 3000, // default: 3000
     host: envSet.HOST || process.env.HOST, //|| "localhost", // default: localhost
   },
+
 };

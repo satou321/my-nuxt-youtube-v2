@@ -13,7 +13,7 @@
 
 <script>
   import {mapGetters} from "vuex";
-  import ListView from "../components/Videos/ListView";
+  import ListView from "@/components/Videos/ListView";
 
   export default {
     components: {
