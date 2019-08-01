@@ -41,6 +41,7 @@ export default {
   plugins: [
     "~plugins/firebase.js",
     "~plugins/axios.js",
+    "~plugins/vue-js-modal",
     // "~plugins/vuetify.js", //error
   ],
   /*
