@@ -1,7 +1,9 @@
 const environment = process.env.NODE_ENV || 'development';
 const envSet = require(`./config/env.${environment}.js`);
 import colors from 'vuetify/es5/util/colors';
-
+import ja from './locales/ja/ja.js';
+import en from './locales/en/en.js'
+// import ja from 'vuetify/es5/locale/ja'
 export default {
   mode: 'universal',
   /*
@@ -73,10 +75,16 @@ export default {
   ** https://github.com/nuxt-community/vuetify-module
   */
   vuetify: {
+    lang: {
+      locales: {ja, en},
+      current: 'ja',
+    },
+
     customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
       themes: {
+        iconfont:"fa",
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
