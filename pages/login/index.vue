@@ -1,6 +1,6 @@
 <template>
   <v-card
-    v-if="alreadyCheckedAuth&&!user"
+    v-if="loadingAuth&&!user"
     name="loginModal"
     transition="pop-out"
     width="400"
@@ -21,7 +21,7 @@
     },
 
     computed: {
-      ...mapGetters("auth", ["alreadyCheckedAuth"]),
+      ...mapGetters("auth", ["loadingAuth"]),
       ...mapGetters("userData", ["user"]),
     },
   };

@@ -101,8 +101,8 @@ export default {
   },
   env: envSet,
   server: {
-    port: envSet.PORT || process.env.PORT,// || 3000, // default: 3000
-    host: envSet.HOST || process.env.HOST, //|| "localhost", // default: localhost
+    port: envSet.PORT || process.env.PORT,// default: 3000
+    host: envSet.HOST || process.env.HOST, // default: localhost
   },
 
 };

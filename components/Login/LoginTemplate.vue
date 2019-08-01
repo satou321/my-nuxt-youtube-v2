@@ -32,8 +32,8 @@
       <v-btn x-large
              outlined
              @click="handleLogin"
-             :loading="!alreadyCheckedAuth"
-             :disabled="!alreadyCheckedAuth">
+             :loading="!loadingAuth"
+             :disabled="!loadingAuth">
         <v-img :src="require('@/assets/img/search.svg')" width="32"
                left></v-img>
         <span class="pl-2">{{loginMsg}}</span>
@@ -73,7 +73,7 @@
       loginMsg() {
         return this.user ? "ログアウト" : "Googleでログイン";
       },
-      ...mapGetters("auth", ["alreadyCheckedAuth"]),
+      ...mapGetters("auth", ["loadingAuth"]),
       ...mapGetters("userData", ["user"]),
 
     },

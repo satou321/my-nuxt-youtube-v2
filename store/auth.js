@@ -1,56 +1,60 @@
 export const state = () => ({
-  alreadyCheckedAuth: false,
+  loadingAuth: true,
+  isFirstPageLoad: true,
 });
 
 export const mutations = {
   setAuth(state, auth) {
     state.isAuthenticated = auth;
   },
-  alreadyCheckedAuth(state, flag) {
-    console.log("alreadyCheckedAuth", flag);
-    state.alreadyCheckedAuth = flag;
+  loadingAuth(state, flag) {
+    console.log("loadingAuth", flag);
+    state.loadingAuth = flag;
+  },
+  isFirstPageLoad(state) {
+    state.isFirstPageLoad = false;
   },
 };
 export const actions = {
-  userListener({commit, dispatch,state}) {
-    return new Promise((resolve => {
+  authListener({commit, dispatch, state}, cb) {
+    return new Promise((resolve, reject) => {
       this.$auth.onAuthStateChanged(user => {
-        if (user) {
-          // User is signed in.
-          dispatch("userData/setUserData", user, {root: true}).catch(e => console.log("setUserDataError",e));
+          try {
+            if (user) {
+              this.$toast.show("ログインしました");
+              // User is signed in.
+              const redirectUri = decodeURIComponent($nuxt.$route.query.redirect_uri || '/');
+              if (redirectUri.startsWith("/") !== false && !redirectUri.startsWith("//")) {
+                console.log("===redirect!", redirectUri);
+                this.$router.push(redirectUri);
+              }
+            } else {
 
-          // dispatch("favs/favListenerById", user.uid, {root: true}).catch(e => console.log("favListnerById Error:", e));
+              /* logged out Or session time out */
+              if (!state.isFirstPageLoad) {
+                this.$toast.show("ログアウトしました");
+              }
 
+              /*　The following is unnecessary because the guard is performed by middleware　*/
+              // this.$router.push('/login');
+            }
 
-          const redirectUri = decodeURIComponent($nuxt.$route.query.redirect_uri || '/');
-          if (redirectUri.startsWith("/") !== false && !redirectUri.startsWith("//")) {
-            console.log("===redirect!", redirectUri);
-            this.$router.push(redirectUri);
+            /* ★ callback. from default.vue */
+            try {
+              cb(user || false);
+            } catch (e) {
+              console.log(e);
+            }
+
+            resolve(true);
+          } catch {
+            reject("api failed");
           }
-          //TODO:色変え
-          this.$toast.show(user.displayName + "さん、こんにちは！");
-        } else {
-          //logged out Or session time out
-          if (state.alreadyCheckedAuth) {
-            this.$toast.show("ログアウトしました")
-          }
-
-          // User is signed out OR not logged in
-          //他タブでログアウトしても呼ばれる
-          // console.log("clear user data AND favs");
-          dispatch("userData/clear", null, {root: true}).catch(e => console.error("Failed to logged out(1)", e));
-          console.log("favs/clear");
-          dispatch("favs/clear", null, {root: true}).catch(e => console.error("Failed to logged out(2)", e));
-
-          //ガードはmiddlewareで行うので下記不要
-          // this.$router.push('/login');
-
-        }
-        commit("alreadyCheckedAuth", true);
-        //TODO:check
-        resolve(user || false);
-      });
-    }));
+          commit("loadingAuth", false);
+          commit("isFirstPageLoad");
+        },
+      );
+    });
   },
 
   /*
@@ -60,21 +64,22 @@ export const actions = {
   async toggleSignIn({commit, dispatch}) {
     console.warn("==Start toggleSignIn...");
     // const failureCb = (e, msg) => console.warn(e, msg);
+    console.log(this.$auth.currentUser);
 
     // currentUserはAuthオブジェクトの初期化が完了していない場合もnullになる
     // onAuthStateChangedなら対処不要
     // https://firebase.google.com/docs/auth/web/manage-users?hl=ja#get_the_currently_signed_in_user
     if (!this.$auth.currentUser) {
-      commit("alreadyCheckedAuth", false);
+      commit("loadingAuth", true);
 
       // ★
       const provider = new this.$firebase.auth.GoogleAuthProvider();
-      this.$auth.signInWithRedirect(provider).catch(e => {
-        commit("alreadyCheckedAuth", true);
-        this.$toast.show("通信エラー");
-        return console.warn("sign in error.code:", 22, e);
-      });
-
+      this.$auth.signInWithRedirect(provider)
+        .catch(e => {
+          commit("loadingAuth", false);
+          this.$toast.show("通信エラー");
+          return console.warn("sign in error.code:", 22, e);
+        });
     } else {
       console.log("====signOut実行==");
       await dispatch("_signOut").catch(e => console.error("Failed to logged out(3)", e));
@@ -83,19 +88,23 @@ export const actions = {
     console.log("==/End toggleSignIn===");
   },
 
-  async _signOut({commit, dispatch}) {
-    console.log("==Start singOut...");
-    commit("alreadyCheckedAuth", false);
-    dispatch("favs/clear", null, {root: true}).catch(e => console.error("Failed to clear fav", e));
-    await this.$auth.signOut().catch(e => console.error("Failed to sign out", e));
+  async _signOut({commit}) {
+    try {
+      console.log("==Start singOut...");
+      commit("loadingAuth", true);
+      await this.$auth.signOut().catch(() => console.error("Failed to sign out"));
 
-    this.$router.push('/login');
-    this.$toast.show("ログアウトしました");
-    // onAuth内でtrueにしているので下記不要
-    // commit("alreadyCheckedAuth", true);
-    console.log("===/End signOut===");
+      this.$router.push('/login');
+      // onAuth内でfalseにしているので下記不要
+      // commit("loadingAuth", false);
+      console.log("===/End signOut===");
+      return Promise.resolve();
+    } catch (e) {
+      return Promise.reject(e);
+    }
   },
 };
 export const getters = {
-  alreadyCheckedAuth: state => state.alreadyCheckedAuth,
+  loadingAuth: state => state.loadingAuth,
+  isFirstPageLoad: state => state.isFirstPageLoad,
 };

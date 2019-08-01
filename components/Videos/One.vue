@@ -76,13 +76,13 @@
         return this.isFavById ? "primary" : "grey";
       },
       isFavById() {
-        return this.$store.getters["favs/isFavById"](this.item.videoId);
+        return this.$store.getters["fav/isFavById"](this.item.videoId);
       },
       ...mapGetters("userData", ["user"]),
     },
     methods: {
-      tglFav: _debounce(function (e) {
-        this.$store.dispatch('favs/tglFav', {
+      tglFav: _debounce(function () {
+        this.$store.dispatch('fav/tglFav', {
           video: this.item,
           isFav: this.isFavById,
         }).catch(e => console.log(e));
