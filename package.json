@@ -7,12 +7,17 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "build:stg": "cross-env NODE_ENV=stage nuxt build",
+    "start": "cross-env NODE_ENV=production nuxt start",
+    "start:stg": "cross-env NODE_ENV=stage nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-beta.16",
+    "@nuxtjs/toast": "^3.2.1",
+    "cross-env": "^5.2.0",
+    "firebase": "^6.3.3",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
