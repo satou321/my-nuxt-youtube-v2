@@ -18,6 +18,9 @@
     "@nuxtjs/toast": "^3.2.1",
     "cross-env": "^5.2.0",
     "firebase": "^6.3.3",
+    "lodash.debounce": "^4.0.8",
+    "lodash.filter": "^4.6.0",
+    "lodash.orderby": "^4.6.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
