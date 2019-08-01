@@ -2,7 +2,7 @@ const environment = process.env.NODE_ENV || 'development';
 const envSet = require(`./config/env.${environment}.js`);
 import colors from 'vuetify/es5/util/colors';
 import ja from './locales/ja/ja.js';
-import en from './locales/en/en.js'
+import en from './locales/en/en.js';
 // import ja from 'vuetify/es5/locale/ja'
 export default {
   mode: 'universal',
@@ -39,6 +39,7 @@ export default {
   plugins: [
     "~plugins/firebase.js",
     "~plugins/axios.js",
+    // "~plugins/vuetify.js", //error
   ],
   /*
   ** Nuxt.js dev-modules
@@ -54,8 +55,9 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
+    'vue-scrollto/nuxt',
   ],
-    toast: {
+  toast: {
     position: 'bottom-center',  //トーストの表示位置
     duration: 5000,           //トーストの表示されている時間（今回は2秒に設定）
   },
@@ -79,12 +81,29 @@ export default {
       locales: {ja, en},
       current: 'ja',
     },
+    icons: {
+      iconfont: "fa",
+    },
 
     customVariables: ['~/assets/variables.scss'],
     theme: {
       dark: false,
+      options: {
+        customProperties: true,
+      },
       themes: {
-        iconfont:"fa",
+        iconfont: "fa",
+        light: {
+          primary: colors.red.accent2,
+          accent: colors.pink.base,
+          secondary: colors.lime.base,
+          info: colors.red.base,
+          warning: colors.orange.base,
+          error: colors.red.accent2,
+          success: colors.teal.base,
+          border: colors.grey.base,
+          footerBgColor: "#fff",
+        },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,

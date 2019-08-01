@@ -78,12 +78,12 @@ export const actions = {
     console.log("取得開始 byId", userId);
     //処理中フラグオン
     commit('setIsFetching', true);
-    console.warn("Start FavsListener!");
+    console.warn("Start favListener!");
     //LikeデータをDBから取得
     try {
       console.log(this.$firestore);
       let unsub = this.$firestore
-        .collection(`users/${userId}/favs`)
+        .collection(`users/${userId}/fav`)
         .orderBy('updateAt', 'desc')
         //TODO:制限もうける。このメソッドでは取得せず別メソッドに分ける。whereのarray-containsオプションによる、表示中ビデオに対するfav配列検索を行うため。
         // .limit(state.pageSize)
@@ -175,7 +175,7 @@ export const actions = {
 
     // return;
     const {videoId, etag, title, imageUrl, description} = payload.video;
-    this.$firestore.collection(`users/${payload.userId}/favs`).doc(videoId).set({
+    this.$firestore.collection(`users/${payload.userId}/fav`).doc(videoId).set({
       videoId, etag, title, imageUrl, description,
       updateAt: Date.now(), //TODO:サーバータイムスタンプに変える
       // updateAt: firestore.FieldValue.serverTimestamp()
@@ -194,7 +194,7 @@ export const actions = {
     console.log("deleteLike", payload, 44);
 
     const videoId = payload.video.videoId;
-    this.$firestore.collection(`users/${payload.userId}/favs`).doc(videoId).delete()
+    this.$firestore.collection(`users/${payload.userId}/fav`).doc(videoId).delete()
       .then(() => {
         //firestoreによるリアルタイム取得のため不要
         //ロード中マーク出す
@@ -204,7 +204,7 @@ export const actions = {
       });
   },
   clear({commit}) {
-    // console.log("[favs.js]clear:STOPLISTNER");
+    // console.log("[fav.js]clear:STOPLISTNER");
     commit('_stopListener');
     commit('clear');
   },

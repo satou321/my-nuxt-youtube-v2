@@ -96,7 +96,7 @@
         } else {
           /*　TODO:未実装。お気に入りは常に全取得*/
           return false;
-          // return this.$store.dispatch("favs/showMore");
+          // return this.$store.dispatch("fav/showMore");
         }
       },
       reload() {

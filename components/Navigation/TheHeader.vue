@@ -9,32 +9,23 @@
 </template>
 
 <script>
-  import {mapGetters} from "vuex";
 
-  // import NavUserMenu from "./NavUserMenu";
-  // import GlobalSearch from "./GlobalSearch";
-  // import TheLogo from "./TheLogo";
-  // import TheLeftDrawerSwitcher from "./TheLeftDrawerSwitcher";
+  import NavUserMenu from "./TheUserMenu";
+  import GlobalSearch from "./TheGlobalSearch";
+  import TheLogo from "./TheLogo";
+  import TheLeftDrawerSwitcher from "./TheLeftDrawerSwitcher";
 
   export default {
-    components: {
-      // TheLeftDrawerSwitcher,
-      // TheLogo,
-      // NavUserMenu, GlobalSearch,
-    },
     name: "TheHeader",
-
-    async beforeMount() {
-      //★
-      this.$store.dispatch("auth/authListener").catch(e => console.log("dispatch authListener",e));
-    },
-    computed: {
-      ...mapGetters("userData", ["user"]),
+    components: {
+      TheLeftDrawerSwitcher,
+      TheLogo,
+      NavUserMenu, GlobalSearch,
     },
   };
 </script>
 
 <style scoped lang="stylus">
   .v-layout
-    border-bottom:3px solid $baseColor
+    border-bottom:3px solid var(--v-primary-base);
 </style>

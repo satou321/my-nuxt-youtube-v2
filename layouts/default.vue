@@ -1,57 +1,44 @@
-<template>
-  <v-app>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"/>
-      <v-spacer/>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt/>
-      </v-container>
-    </v-content>
+<template lang="pug">
+  //v-app-bar(style="background:#F2F2F2")
+  v-app
+    v-app-bar(app fixed flat class="border")
+      TheHeader
+    v-content
+      v-container(fluid fill-height)
+        v-layout(align-center justify-center )
+          nuxt
+    v-footer(app padless absolute)
+      TheFooter
+    ScrollToTop
+    TheLeftDrawer
+    LoginModal
+    Loading
+    TheListener
 
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; 2019</span>
-    </v-footer>
-  </v-app>
 </template>
 
 <script>
-  import {mapGetters} from "vuex";
+  import Loading from "@/components/Loading";
+  import TheHeader from "@/components/Navigation/TheHeader";
+  import TheFooter from "@/components/Navigation/TheFooter";
+  import TheLeftDrawer from "@/components/Navigation/TheLeftDrawer";
+  import TheLeftDrawerSwitcher
+    from "@/components/Navigation/TheLeftDrawerSwitcher";
+  import LoginModal from "@/components/Login/LoginModal";
+  import ScrollToTop from "@/components/UI/ScrollToTop";
+  import TheListener from "@/components/TheListener";
 
   export default {
+    components: {
+      TheListener,
+      TheHeader,
+      TheFooter,
+      TheLeftDrawer,
+      TheLeftDrawerSwitcher,
+      LoginModal,
+      ScrollToTop,
+      Loading,
+    },
     data() {
       return {
         clipped: false,
@@ -75,24 +62,7 @@
         title: 'Vuetify.js',
       };
     },
-    async beforeMount() {
-      /* ★ onAuthStateChanged */
-      this.$store.dispatch("auth/authListener", cb).catch(e => console.log(5454, e));
-      const vm = this;
 
-      /* ★ onAuthStateChanged callbacks  */
-      function cb(user) {
-        const uid = user ? user.uid : false;
-        //fav
-        vm.$store.dispatch("fav/favListenerByUserId", uid).catch(e => console.log(4325, e));
-        //userData
-        vm.$store.dispatch("userData/updateUser", user).catch(e => console.log(73, e));
-      }
-    },
-    computed: {
-      ...mapGetters("userData", ["user"]),
-      ...mapGetters("auth", ["loadingAuth","isFirstPageLoad"]),
-    },
 
   };
 </script>
