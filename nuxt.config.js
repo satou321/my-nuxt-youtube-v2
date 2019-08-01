@@ -32,7 +32,9 @@ export default {
   /*
   ** Global CSS
   */
-  css: [],
+  css: [
+    {src: '@/assets/skeleton.styl', lang: 'stylus'},
+  ],
   /*
   ** Plugins to load before mounting the App
   */
