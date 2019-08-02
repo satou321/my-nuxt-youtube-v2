@@ -1,14 +1,13 @@
 <template>
   <v-layout justify-end>
     <!--favorites-->
-
-
     <v-btn to="/fav"
            v-show="user"
-           fab
-
            color="primary"
-           class="myBtn"
+           fab
+           class="myBtn elevation-3"
+           height="48"
+           width="48"
     >
       <v-icon>far fa-heart</v-icon>
     </v-btn>
@@ -17,7 +16,9 @@
     <v-btn
       v-if="!user"
       @click="$modal.show('loginModal')"
-      class="primary font-weight-bold py-0 my-0">
+      class="primary font-weight-bold py-0 my-0"
+      height="50"
+    >
       ログイン
     </v-btn>
 
@@ -67,11 +68,6 @@
   };
 </script>
 
-<style lang="scss" scoped>
-  .myBtn {
-    //@include myBtn;
-    width: 30px;
-  }
-
+<style lang="stylus" scoped>
 
 </style>

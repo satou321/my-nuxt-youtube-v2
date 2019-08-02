@@ -1,7 +1,7 @@
 <template lang="pug">
   //v-app-bar(style="background:#F2F2F2")
   v-app
-    v-app-bar(app fixed flat class="border")
+    v-app-bar(app fixed flat class="app-bar" height="68")
       TheHeader
     v-content
       v-container(fluid fill-height)
@@ -66,3 +66,7 @@
 
   };
 </script>
+<style scoped lang="stylus">
+  .app-bar
+    border-bottom: 3px solid var(--v-primary-base)
+</style>

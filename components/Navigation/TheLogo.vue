@@ -20,8 +20,9 @@
       padding-top: 10px
       width: 58px
 
+
   #logoInner
-      overflow: hidden
-      height: 68px - 11px
+      // negative margin for border-bottom:3px and margin:4px
+      height: 68px - 3px - 4px
 
 </style>

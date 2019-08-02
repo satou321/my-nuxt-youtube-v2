@@ -3,6 +3,7 @@ const envSet = require(`./config/env.${environment}.js`);
 import colors from 'vuetify/es5/util/colors';
 import ja from './locales/ja/ja.js';
 import en from './locales/en/en.js';
+
 export default {
   mode: 'universal',
   /*
@@ -93,7 +94,7 @@ export default {
     //   iconfont: 'fa',
     // },
 
-    customVariables: ['@/assets/variables.scss'],
+    // customVariables: ['@/assets/variables.scss'],
     theme: {
       dark: false,
       options: {
@@ -140,6 +141,9 @@ export default {
   server: {
     port: envSet.PORT || process.env.PORT,// default: 3000
     host: envSet.HOST || process.env.HOST, // default: localhost
+  },
+  styleResources: {
+    stylus: ['@/assets/style.styl'],
   },
 
 };

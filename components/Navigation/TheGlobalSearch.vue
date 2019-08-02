@@ -4,7 +4,7 @@
     <v-btn class="hidden-sm-and-up" icon
            @click="tglDropdownSearch">
       <v-icon size="30" color="#757575">
-        {{stateDropdownSearch?'close':'search'}}
+        {{stateDropdownSearch?'fa fa-times':'fa fa-search'}}
       </v-icon>
     </v-btn>
 

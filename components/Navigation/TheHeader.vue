@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-layout(justify-center align-center)
-    v-toolbar-title
+  v-layout(justify-center align-center )
+    v-toolbar-title(class="header")
       TheLogo
     GlobalSearch
     NavUserMenu
@@ -26,6 +26,5 @@
 </script>
 
 <style scoped lang="stylus">
-  .v-layout
-    border-bottom:3px solid var(--v-primary-base);
+
 </style>

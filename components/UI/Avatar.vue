@@ -4,6 +4,8 @@
     v-if="user"
     to="/profile"
     icon
+    height="50"
+    width="50"
     class="ml-2"
   >
 
