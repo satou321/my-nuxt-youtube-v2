@@ -75,8 +75,6 @@
       ...mapGetters("userData", ['user']),
       ...mapGetters("fav", {fav: "all"}),
     },
-    created() {
-    },
     methods: {
       ...mapActions("auth", ["toggleSignIn"]),
 
