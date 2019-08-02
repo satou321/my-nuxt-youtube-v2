@@ -28,7 +28,6 @@ export default {
         href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css",
       },
     ],
-
   },
   /*
   ** Customize the progress-bar color
@@ -89,10 +88,10 @@ export default {
       current: 'ja',
     },
     // doesn't work
-    // icons: {
-    //   font: true,
-    //   iconfont: 'fa',
-    // },
+    icons: {
+      font: true,
+      iconfont: 'fa',
+    },
 
     // customVariables: ['@/assets/variables.scss'],
     theme: {
@@ -100,11 +99,9 @@ export default {
       options: {
         customProperties: true,
       },
-
       iconfont: 'fa',
       themes: {
         light: {
-
           primary: colors.red.accent2,
           accent: colors.pink.base,
           secondary: colors.lime.base,
@@ -115,15 +112,6 @@ export default {
           border: colors.grey.base,
           footerBgColor: "#fff",
         },
-        // dark: {
-        //   primary: colors.blue.darken2,
-        //   accent: colors.grey.darken3,
-        //   secondary: colors.amber.darken3,
-        //   info: colors.teal.lighten1,
-        //   warning: colors.amber.base,
-        //   error: colors.deepOrange.accent4,
-        //   success: colors.green.accent3,
-        // },
       },
     },
   },
@@ -131,6 +119,21 @@ export default {
   ** Build configuration
   */
   build: {
+    terser: {
+      parallel: true,
+      cache: false,
+      sourceMap: true,
+      extractComments: {
+        filename: 'LICENSES',
+      },
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          // process.env.NODE_ENV === 'production' ||
+          // process.env.NODE_ENV === 'training',
+        },
+      },
+    },
     // splitChunks: {
     //   layouts: true,
     //   pages: true,
@@ -142,7 +145,8 @@ export default {
     */
     extend(config, ctx) {
     },
-    analyze:false,
+    analyze: false,
+
   },
   env: envSet,
   server: {
@@ -153,21 +157,5 @@ export default {
     stylus: ['@/assets/style.styl'],
   },
 
-  /* https://ja.nuxtjs.org/api/configuration-build/#terser */
-  terser: {
-    parallel: true,
-    cache: false,
-    sourceMap: false,
-    extractComments: {
-      filename: 'LICENSES',
-    },
-    terserOptions: {
-      compress: {
-        drop_console:true
-          // process.env.NODE_ENV === 'production' ||
-          // process.env.NODE_ENV === 'stage',
-      },
-    },
-  },
 
 };
