@@ -7,6 +7,13 @@ exports.default = void 0;
 var _default = {
   search: 'Search',
   showMore: 'Show More',
+
+  loginTitle: 'Sign in',
+  logoutTitle: 'Sign out',
+  loginMsg: 'Sign in with Google',
+  logoutMsg: 'Sign in with Google',
+   loginWith:', hi!',
+
   close: 'Close',
   dataIterator: {
     pageText: '{0}-{1} of {2}',

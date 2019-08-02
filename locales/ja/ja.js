@@ -7,6 +7,11 @@ exports.default = void 0;
 var _default = {
   search: '検索',
   showMore: '次へ',
+  loginTitle:'ログイン',
+  logoutTitle:'ログイン',
+  loginMsg:'googleでログイン',
+  logoutMsg:'ログアウト',
+  loginWith:'さんとしてログインしています',
   close: 'Close',
   dataIterator: {
     pageText: '{0}-{1} 件目 / {2}件',

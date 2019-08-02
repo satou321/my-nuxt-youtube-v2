@@ -1,11 +1,15 @@
 <template>
   <v-card>
     <v-card-actions>
-      <span class="headline">{{loginTitle}}</span>
+      <v-card-text>
+        <span class="headline black--text">{{loginTitle}}</span>
+      </v-card-text>
       <v-spacer></v-spacer>
       <!--suppress HtmlUnknownTag -->
       <v-btn text depressed v-if="closeBtn">
         <!--suppress HtmlUnknownTag -->
+        <v-icon @click="$modal.hide('loginModal')" color="#333">fas fa-times
+        </v-icon>
       </v-btn>
     </v-card-actions>
 
@@ -21,7 +25,7 @@
         </v-avatar>
       </v-layout>
       <v-layout justify-center>
-        <div>{{user.displayName}}さんとしてログインしています</div>
+        <div>{{loginWith}}</div>
       </v-layout>
     </v-card-text>
 
@@ -61,17 +65,24 @@
         // 事前に取得していたパスへ移動
         await this.$store.dispatch("auth/toggleSignIn")
           .catch(e => {
-            this.$toast.show("ログインできません");
+            this.$toast.show($vuetify.lang.t('$vuetify.search'));
             console.log(34, e);
           });
       },
     },
     computed: {
       loginTitle() {
-        return this.user ? "ログアウト" : "ログイン";
+        return this.user ? this.$vuetify.lang.t('$vuetify.logoutTitle') : this.$vuetify.lang.t('$vuetify.loginTitle');
       },
       loginMsg() {
-        return this.user ? "ログアウト" : "Googleでログイン";
+        return this.user ? this.$vuetify.lang.t('$vuetify.logoutMsg') : this.$vuetify.lang.t('$vuetify.loginMsg');
+      },
+      loginWith(){
+        if (this.$vuetify.lang.current==='ja') {
+          return this.user.displayName + this.$vuetify.lang.t('$vuetify.loginWith')
+        } else {
+          return this.$vuetify.lang.t('$vuetify.loginWith')+" "+this.user.displayName
+        }
       },
       ...mapGetters("auth", ["loadingAuth"]),
       ...mapGetters("userData", ["user"]),

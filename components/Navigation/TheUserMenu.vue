@@ -13,10 +13,11 @@
     </v-btn>
 
     <!--login-->
+
     <v-btn
       v-if="!user"
       @click="$modal.show('loginModal')"
-      class="primary font-weight-bold py-0 my-0"
+      class="primary  py-0 my-0"
       height="50"
     >
       ログイン
@@ -69,5 +70,7 @@
 </script>
 
 <style lang="stylus" scoped>
+.fcolor
+  background-color: #2CBCD6 !important
 
 </style>

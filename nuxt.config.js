@@ -103,13 +103,14 @@ export default {
       themes: {
         light: {
           primary: colors.red.accent2,
-          accent: colors.pink.base,
-          secondary: colors.lime.base,
+          accent: '#6ac8d6',
+          accent2:'#2CBCD6',
+          secondary: '#6AC8AB',
           info: colors.red.base,
           warning: colors.orange.base,
           error: colors.red.accent2,
           success: colors.teal.base,
-          border: colors.grey.base,
+          border: '#d6d6d6',
           footerBgColor: "#fff",
         },
       },
