@@ -14,10 +14,10 @@ export const state = () => ({
   maxResults: 5,
   error: {
     isError: false,
-    message: '',
+    message: ''
   },
   showMoreEnabled: true,
-  searchText: '',
+  searchText: ''
 });
 
 /*
@@ -33,10 +33,10 @@ export const mutations = {
     if (process.browser) {
       this.$toast.show('error:' + message);
     }
-    state.error = {isError: true, message: message};
+    state.error = { isError: true, message: message };
   },
   clearError(state) {
-    state.error = {isError: false, message: ''};
+    state.error = { isError: false, message: '' };
   },
   setLoading(state, flag) {
     if (!process.browser) {
@@ -67,7 +67,7 @@ export const mutations = {
   },
   setSearchText(state, payload) {
     state.searchText = payload;
-  },
+  }
 };
 
 /*
@@ -75,13 +75,13 @@ export const mutations = {
  * */
 //fetch and set
 export const actions = {
-  async reload({commit, dispatch}) {
+  async reload({ commit, dispatch }) {
     const fetchedObj = await dispatch('fetchVideos').catch(e => console.log(e));
 
     dispatch('setVideos', fetchedObj).catch(e => console.log(e));
     commit('incrementPage');
   },
-  async showMore({commit, dispatch, state, getters}) {
+  async showMore({ commit, dispatch, state, getters }) {
     // if (this.pageNum > 0) {
     console.log(
       'total:',
@@ -89,7 +89,7 @@ export const actions = {
       ' maxRes:',
       state.maxResults,
       ' page:',
-      state.pageNum,
+      state.pageNum
     );
     const _hasMore = getters.hasMore;
     if (!_hasMore || state.nextPageToken === '') {
@@ -97,16 +97,16 @@ export const actions = {
       return;
     }
     const fetchedObj = await dispatch('fetchVideos', state.searchText).catch(
-      e => console.log(e),
+      e => console.log(e)
     );
 
     dispatch('setVideos', fetchedObj).catch(e => console.log(e));
     commit('incrementPage');
   },
-  async fetchVideos({commit, dispatch, state, getters}, searchText = '') {
+  async fetchVideos({ commit, dispatch, state, getters }, searchText = '') {
     const FROM = {
-      MOCK: '/j',
-      YOUTUBE: '/y',
+      MOCK: '/api/j',
+      YOUTUBE: '/api/y'
     };
 
     try {
@@ -115,11 +115,11 @@ export const actions = {
       commit('setSearchText', searchText);
     } catch (e) {
       console.log('fetchVideos', e);
-      return Promise.reject(e);
+      return e;
     }
 
     try {
-      const res = await this.$axios.$get(FROM.YOUTUBE, {
+      const res = await this.$axios.$get(FROM.MOCK, {
         params: {
           key: process.env.APIKEY,
           q: searchText || 'cute baby animals',
@@ -127,8 +127,8 @@ export const actions = {
           maxResults: getters['maxResults'],
           // safeSearch: "",
           // publishedAfter: "2019-01-01T00:00:00Z",
-          order: 'viewCount',
-        },
+          order: 'viewCount'
+        }
       });
       return Promise.resolve(res);
     } catch (e) {
@@ -137,22 +137,23 @@ export const actions = {
       if (process.browser) {
         this.$toast.show('通信エラー');
       }
-      return Promise.reject('通信エラー');
+      return false;
       // return Promise.reject(e);
     } finally {
       commit('setLoading', false);
     }
   },
 
-  setInfo({commit}, fetchedVideosObj) {
+  setInfo({ commit }, fetchedVideosObj) {
     commit('setVideosInfo', fetchedVideosObj);
   },
-  setVideos({commit, dispatch}, fetchedVideosObj) {
+  setVideos({ commit, dispatch }, fetchedVideosObj) {
     // console.log(7, "[", fetchedVideosObj, !fetchedVideosObj, "]");
     if (!fetchedVideosObj) {
       // 通信エラーだとここにくる
       console.log("Can't setVideos. fetchedVideosObj:{", fetchedVideosObj, '}');
-      return Promise.reject();
+      // return;
+      return false;
     }
 
     let videoObj = {};
@@ -165,11 +166,11 @@ export const actions = {
           title: y.snippet.title,
           description: y.snippet.description,
           imageUrl: y.snippet.thumbnails.high.url,
-          videoId: y.id.videoId,
-        }),
+          videoId: y.id.videoId
+        })
       );
     } catch (e) {
-      console.warn(55,e);
+      console.warn(55, e);
       return Promise.reject(e);
     }
 
@@ -179,15 +180,15 @@ export const actions = {
     }
 
     if (fetchedVideosObj) {
-      console.warn(33, fetchedVideosObj);
+      console.warn(33, 'video取得したので処理開始');
       dispatch('setInfo', fetchedVideosObj).catch(e => console.log(e));
     } else {
       // console.log("通信エラー", fetchedVideosObj.isAxiosError);
     }
   },
-  clear({commit}) {
+  clear({ commit }) {
     commit('clear');
-  },
+  }
 };
 
 /*
@@ -212,8 +213,8 @@ export const getters = {
   },
   hasMore(state) {
     if (!state.totalResults) {
-      return 0
+      return 0;
     }
     return state.totalResults > state.maxResults * state.pageNum;
-  },
+  }
 };
