@@ -76,7 +76,7 @@
       },
       handleSearch() {
         console.log(32, "handlerSearch");
-        this.$store.dispatch("search/searchVideos", this.searchText).catch(e => console.log(e));
+        this.$store.dispatch("search/searchVideos", this.searchText).catch(e => console.erro(e));
 
         this.stateDropdownSearch = false;
         this.searchText = "";

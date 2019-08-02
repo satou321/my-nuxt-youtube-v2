@@ -3,7 +3,7 @@
 * 非公開変数を記述していいですが、.gitignoreしてください。
 * */
 module.exports = {
-  APIKEY: 'AIzaSyDbALNJ0CF2YS5EN9sApUO_kulyY8yd7Hwa',
+  APIKEY: 'AIzaSyDbALNJ0CF2YS5EN9sApUO_kulyY8yd7Hw',
   AUTHDOMAIN: 'vuestock-c22b8.firebaseapp.com',
   DATABASEURL: 'https://vuestock-c22b8.firebaseio.com',
   PROJECTID: 'vuestock-c22b8',
@@ -13,6 +13,6 @@ module.exports = {
   // VIDEO_API_URL: 'http://10.0.1.6:8082',
   VIDEO_API_URL: 'https://rocky-falls-88494.herokuapp.com/',
   HOST: '10.0.1.6',
-  PORT: '3002',
+  PORT: '3003',
   //SECRET: '32i491hoinoapjkn@ld[@i113o2n',
 };
