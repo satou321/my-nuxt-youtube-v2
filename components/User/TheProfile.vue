@@ -1,62 +1,60 @@
 <template>
-  <v-container fill-height fluid>
-    <v-layout align-center justify-center>
-      <v-card v-if="user">
-        <v-list>
-          <v-list-item>
-            <v-list-item-avatar>
-              <img :src="user.photoURL" :alt="user.displayName">
-            </v-list-item-avatar>
+  <v-card v-if="user"
+          width="400"
+          class="mx-auto" >
+    <v-list>
+      <v-list-item>
+        <v-list-item-avatar>
+          <img :src="user.photoURL" :alt="user.displayName">
+        </v-list-item-avatar>
 
-            <v-list-item-content>
-              <v-list-item-title class="headline">{{user.displayName}}
+        <v-list-item-content>
+          <v-list-item-title class="headline">{{user.displayName}}
 
-              </v-list-item-title>
+          </v-list-item-title>
 
-              <!--          <v-list-item-subtitle>something...</v-list-item-subtitle>-->
-            </v-list-item-content>
+          <!--          <v-list-item-subtitle>something...</v-list-item-subtitle>-->
+        </v-list-item-content>
 
-          </v-list-item>
-        </v-list>
+      </v-list-item>
+    </v-list>
 
-        <v-divider></v-divider>
+    <v-divider></v-divider>
 
-        <v-list-item v-if="fav.length">
-          <v-list-item-avatar size="64" tile>
-            <v-img :src="fav[0].imageUrl">
-              <template #placeholder>
-                <v-layout
-                  align-center
-                  fill-height
-                  justify-center
-                  class="skeleton"
-                >
-                </v-layout>
-              </template>
-            </v-img>
+    <v-list-item v-if="fav.length">
+      <v-list-item-avatar size="64" tile>
+        <v-img :src="fav[0].imageUrl">
+          <template #placeholder>
+            <v-layout
+              align-center
+              fill-height
+              justify-center
+              class="skeleton"
+            >
+            </v-layout>
+          </template>
+        </v-img>
 
-          </v-list-item-avatar>
+      </v-list-item-avatar>
 
-          <v-list-item-content>
-            <v-list-item-title>
-              <v-btn to="/fav" class="title" outlined x-large>
-                お気に入り {{fav.length}}件
-              </v-btn>
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+      <v-list-item-content>
+        <v-list-item-title>
+          <v-btn to="/fav" class="title" outlined x-large>
+            お気に入り {{fav.length}}件
+          </v-btn>
+        </v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
 
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
+    <v-card-actions>
+      <v-spacer></v-spacer>
 
-          <v-btn @click="toggleSignIn" color="primary" text>LOGOUT</v-btn>
-          <!--      <v-btn text @click="menu = false">Cancel</v-btn>-->
-          <!--      <v-btn color="primary" text @click="menu = false">Save</v-btn>-->
-        </v-card-actions>
-      </v-card>
-    </v-layout>
-  </v-container>
+      <v-btn @click="toggleSignIn" color="primary" text>LOGOUT</v-btn>
+      <!--      <v-btn text @click="menu = false">Cancel</v-btn>-->
+      <!--      <v-btn color="primary" text @click="menu = false">Save</v-btn>-->
+    </v-card-actions>
+  </v-card>
 </template>
 
 

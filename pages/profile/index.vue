@@ -1,11 +1,7 @@
 <template>
-  <v-container fill-height>
-    <v-layout justify-center align-start>
 
       <TheProfile></TheProfile>
 
-    </v-layout>
-  </v-container>
 </template>
 
 <script>

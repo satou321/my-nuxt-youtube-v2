@@ -42,7 +42,6 @@
     watch: {
       searchText: function (newValue, oldValue) {
         if (newValue !== "" && !this.getFilteredResults.length) {
-          console.log("ok!", newValue, oldValue);
           this.isNoSearchResult = true;
         } else {
           this.isNoSearchResult = false;
@@ -67,9 +66,11 @@
         return _orderBy(results, 'updateAt', this.order ? 'desc' : 'asc');
       },
     },
-    clear() {
-      this.searchText = "";
-    },
+    methods: {
+      clear() {
+        this.searchText = "";
+      },
+    }
 
   };
 </script>
