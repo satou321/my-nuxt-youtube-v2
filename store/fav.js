@@ -4,16 +4,7 @@ export const state = () => ({
   unsubscribe: null,
   showMoreEnabled: true,
 });
-export const getters = {
-  all: (state) => state.all,
-  isFavById: (state) => (videoId) => {
-    return state.all && state.all.some(x => {
-      // console.log("与えられたVideoId=", videoId, "fav登録済みID", x.videoId);
-      return x.videoId === videoId;
-    });
-  },
-  isFetching: state => state.isFetching,
-};
+
 export const mutations = {
   clear(state) {
     console.log(state.all + "をクリアしました");
@@ -208,4 +199,14 @@ export const actions = {
     commit('_stopListener');
     commit('clear');
   },
+};
+export const getters = {
+  all: (state) => state.all,
+  isFavById: (state) => (videoId) => {
+    return state.all && state.all.some(x => {
+      // console.log("与えられたVideoId=", videoId, "fav登録済みID", x.videoId);
+      return x.videoId === videoId;
+    });
+  },
+  isFetching: state => state.isFetching,
 };

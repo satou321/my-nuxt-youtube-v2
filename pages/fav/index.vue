@@ -4,7 +4,7 @@
       <v-flex shrink>
         <v-text-field
           @keydown.esc="clear"
-          @change="changeSearchText(searchText,$event)"
+          v-model="searchText"
           placeholder="お気に入りを検索"
           prepend-inner-icon="fa fa-search"
           hide-details
@@ -36,17 +36,25 @@
         isNoSearchResult: false,
         searchResults: "",
         searchText: "",
-        noSearchResultMsg: "見つかりませんでした",
-        noFavMsg: "お気に入りはまだありません",
         order: true,
       };
+    },
+    watch: {
+      searchText: function (newValue, oldValue) {
+        if (newValue !== "" && !this.getFilteredResults.length) {
+          console.log("ok!", newValue, oldValue);
+          this.isNoSearchResult = true;
+        } else {
+          this.isNoSearchResult = false;
+        }
+      },
     },
     computed: {
       all() {
         return this.$store.getters["fav/all"];
       },
       noResultMsg() {
-        return this.flag ? this.noSearchResultMsg : this.noFavMsg;
+        return this.isNoSearchResult ? "見つかりませんでした" : "お気に入りはまだありません";
       },
       ...mapGetters("fav", ["isFetching"]),
       getFilteredResults() {
@@ -58,22 +66,9 @@
         });
         return _orderBy(results, 'updateAt', this.order ? 'desc' : 'asc');
       },
-
     },
-    methods: {
-      changeSearchText(oldValue, newValue) {
-        // console.log(3213, oldValue, newValue);
-        this.searchText = newValue;
-        //なにか検索し、かつ変化があり、かつ結果が0なら結果メッセージ変更
-        const isSearch = this.searchText !== "";
-        const valueChanged = (oldValue !== newValue);
-
-        this.isNoSearchResult = isSearch && valueChanged && !this.getFilteredResults.length;
-        console.log("検索結果",this.isNoSearchResult);
-      },
-      clear() {
-        this.searchText = "";
-      },
+    clear() {
+      this.searchText = "";
     },
 
   };
