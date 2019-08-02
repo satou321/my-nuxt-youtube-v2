@@ -75,12 +75,18 @@
         this.searchText = "";
       },
       handleSearch() {
-        console.log(32, "handlerSearch");
-        this.$store.dispatch("search/searchVideos", this.searchText).catch(e => console.erro(e));
+        console.log(32, "handlerSearch", this.searchText);
+        this.$store.dispatch("search/searchVideos", this.searchText).catch(e => console.error(e));
 
         this.stateDropdownSearch = false;
         this.searchText = "";
-        $nuxt.$router.push("/");
+        if ($nuxt.$route.path)
+
+          if (ctx.route.path !== "/") {
+            $nuxt.$router.push("/");
+          }
+
+
       },
       tglDropdownSearch() {
         //toggle open/close
@@ -104,18 +110,12 @@
 <style lang="stylus" scoped>
 
   //600 1024 1440-16 1920-16
-  xsAndUp()
-    @media screen and (min-width: 600px)
-      {block}
 
-  xsOnly()
-    @media screen and (max-width: 599px)
-      {block}
 
   //xsのときはグローバル検索をabsoluteにする
   .xs.v-input
-    position:initial
-    +xsOnly()
+    position: initial
+    @media screen and (max-width: 599px)
       display: none
       position: absolute
       top: 68px;

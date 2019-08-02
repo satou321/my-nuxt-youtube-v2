@@ -14,7 +14,7 @@
                    class="primary ma-5"
                    :loading="isLoading"
                    :disabled="isLoading">
-              <v-icon>cached</v-icon>
+              <v-icon size="18">fas fa-sync</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>

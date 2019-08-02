@@ -39,7 +39,7 @@
 
       <v-list-item-content>
         <v-list-item-title>
-          <v-btn to="/fav" class="title" outlined x-large>
+          <v-btn to="/fav" class="primary title"  x-large >
             お気に入り {{fav.length}}件
           </v-btn>
         </v-list-item-title>

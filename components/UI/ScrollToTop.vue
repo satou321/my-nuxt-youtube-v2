@@ -1,14 +1,11 @@
-<template>
-  <!-- Scroll Top Button -->
+<template><!-- Scroll Top Button -->
   <div class="btn-scrolltop " v-if="position > 500">
-
     <transition name="fade">
       <div class="btn-scrolltop" v-if="position > 500">
         <a class="button" v-scroll-to="'body'">
           <v-fab-transition>
-
-            <v-btn fab right fixed class="bottom">
-              <v-icon>arrow_upward</v-icon>
+            <v-btn fab bottom right fixed class="bottom">
+              <v-icon>fa fa-arrow-up</v-icon>
             </v-btn>
           </v-fab-transition>
         </a>
@@ -23,7 +20,7 @@
     name: "ScrollToTop",
     data() {
       return {
-        position: 810,
+        position: 0,
       };
     },
     mounted() {

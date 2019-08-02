@@ -16,7 +16,9 @@ export default function ({$axios}) {
     // config.headers.common['Authorization'] = process.env.APIKEY;
     // console.log(3333, config.headers.common);
   });
-  if (process.browser) {
-    $axios.onError(e => Vue.toasted.show(error));
-  }
+  $axios.onError(e => {
+    if (process.browser) {
+      $axios.onError(e => Vue.toasted.show(error));
+    }
+  });
 }
