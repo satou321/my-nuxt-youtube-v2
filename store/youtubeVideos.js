@@ -130,15 +130,14 @@ export const actions = {
           order: 'viewCount',
         },
       });
-      // console.log(res);
       return Promise.resolve(res);
     } catch (e) {
       //TODO:エラー処理外部化
-      console.warn('axios error', '通信エラーが発生しました');
+      // console.warn('axios error', '通信エラーが発生しました');
       if (process.browser) {
         this.$toast.show('通信エラーが発生しました');
       }
-      return e;
+      return Promise.reject('通信エラーが発生しました');
       // return Promise.reject(e);
     } finally {
       commit('setLoading', false);
@@ -212,6 +211,9 @@ export const getters = {
     return state.isLoading;
   },
   hasMore(state) {
+    if (!state.totalResults) {
+      return 0
+    }
     return state.totalResults > state.maxResults * state.pageNum;
   },
 };
