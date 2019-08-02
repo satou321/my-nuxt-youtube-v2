@@ -6,7 +6,7 @@
           @keydown.esc="clear"
           @change="changeSearchText(searchText,$event)"
           placeholder="お気に入りを検索"
-          prepend-inner-icon="search"
+          prepend-inner-icon="fa fa-search"
           hide-details
           clearable
           solo></v-text-field>
@@ -69,7 +69,7 @@
         const valueChanged = (oldValue !== newValue);
 
         this.isNoSearchResult = isSearch && valueChanged && !this.getFilteredResults.length;
-        console.log(this.isNoSearchResult);
+        console.log("検索結果",this.isNoSearchResult);
       },
       clear() {
         this.searchText = "";

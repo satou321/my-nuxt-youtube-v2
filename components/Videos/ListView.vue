@@ -4,7 +4,7 @@
       <v-layout justify-center>
 
         <v-card flat  color="transparent" height="100%"
-                class="text-align-center justify-center" style="background-color: yellow !important;">
+                class="text-align-center justify-center" >
           <v-card-title text-align-center v-if="!isLoading"  style="">
             {{noResultMsg}}
           </v-card-title>
