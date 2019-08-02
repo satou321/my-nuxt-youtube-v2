@@ -41,11 +41,7 @@
     },
     watch: {
       searchText: function (newValue, oldValue) {
-        if (newValue !== "" && !this.getFilteredResults.length) {
-          this.isNoSearchResult = true;
-        } else {
-          this.isNoSearchResult = false;
-        }
+        this.isNoSearchResult = newValue !== "" && !this.getFilteredResults.length;
       },
     },
     computed: {
