@@ -133,11 +133,11 @@ export const actions = {
       return Promise.resolve(res);
     } catch (e) {
       //TODO:エラー処理外部化
-      // console.warn('axios error', '通信エラーが発生しました');
+      // console.warn('axios error', '通信エラー');
       if (process.browser) {
-        this.$toast.show('通信エラーが発生しました');
+        this.$toast.show('通信エラー');
       }
-      return Promise.reject('通信エラーが発生しました');
+      return Promise.reject('通信エラー');
       // return Promise.reject(e);
     } finally {
       commit('setLoading', false);
