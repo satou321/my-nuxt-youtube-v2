@@ -32,8 +32,8 @@
       <v-btn x-large
              outlined
              @click="handleLogin"
-             :loading="!loadingAuth"
-             :disabled="!loadingAuth">
+             :loading="loadingAuth"
+             :disabled="loadingAuth">
         <v-img :src="require('@/assets/img/search.svg')" width="32"
                left></v-img>
         <span class="pl-2">{{loginMsg}}</span>
