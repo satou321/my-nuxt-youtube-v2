@@ -3,7 +3,6 @@ const envSet = require(`./config/env.${environment}.js`);
 import colors from 'vuetify/es5/util/colors';
 import ja from './locales/ja/ja.js';
 import en from './locales/en/en.js';
-// import ja from 'vuetify/es5/locale/ja'
 export default {
   mode: 'universal',
   /*
@@ -23,7 +22,12 @@ export default {
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css",
+      },
     ],
+
   },
   /*
   ** Customize the progress-bar color
@@ -42,7 +46,6 @@ export default {
     "~plugins/firebase.js",
     "~plugins/axios.js",
     "~plugins/vue-js-modal",
-    // "~plugins/vuetify.js", //error
   ],
   /*
   ** Nuxt.js dev-modules
@@ -84,19 +87,23 @@ export default {
       locales: {ja, en},
       current: 'ja',
     },
-    icons: {
-      iconfont: "fa",
-    },
+    // doesn't work
+    // icons: {
+    //   font: true,
+    //   iconfont: 'fa',
+    // },
 
-    customVariables: ['~/assets/variables.scss'],
+    customVariables: ['@/assets/variables.scss'],
     theme: {
       dark: false,
       options: {
         customProperties: true,
       },
+
+      iconfont: 'fa',
       themes: {
-        iconfont: "fa",
         light: {
+
           primary: colors.red.accent2,
           accent: colors.pink.base,
           secondary: colors.lime.base,
@@ -107,15 +114,15 @@ export default {
           border: colors.grey.base,
           footerBgColor: "#fff",
         },
-        dark: {
-          primary: colors.blue.darken2,
-          accent: colors.grey.darken3,
-          secondary: colors.amber.darken3,
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3,
-        },
+        // dark: {
+        //   primary: colors.blue.darken2,
+        //   accent: colors.grey.darken3,
+        //   secondary: colors.amber.darken3,
+        //   info: colors.teal.lighten1,
+        //   warning: colors.amber.base,
+        //   error: colors.deepOrange.accent4,
+        //   success: colors.green.accent3,
+        // },
       },
     },
   },

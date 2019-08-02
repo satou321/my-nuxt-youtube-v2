@@ -67,10 +67,11 @@
   };
 </script>
 
-<style lang="sass" scoped>
-  .myBtn
-    +myBtn
-    width: 30px
+<style lang="scss" scoped>
+  .myBtn {
+    //@include myBtn;
+    width: 30px;
+  }
 
 
 </style>

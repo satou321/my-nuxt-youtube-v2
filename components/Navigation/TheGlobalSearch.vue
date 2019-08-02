@@ -19,7 +19,7 @@
       @keyup.enter="handleSearch"
       @keydown.esc="clear"
       :placeholder="$vuetify.lang.t('$vuetify.search')"
-      prepend-inner-icon="search"
+      prepend-inner-icon="fas fa-search"
       hide-details
       clearable
       solo

@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  import ListView from "../../components/Videos/ListView";
+  import ListView from "@/components/Videos/ListView";
   import {mapGetters} from "vuex";
   import _orderBy from "lodash.orderby";
 

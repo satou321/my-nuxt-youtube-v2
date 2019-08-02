@@ -33,7 +33,7 @@
             <v-layout align-center justify-end v-if="user">
               <v-btn icon>
                 <v-icon :color="favColor"
-                        @click="tglFav">favorite
+                        @click="tglFav">fa fa-heart
                 </v-icon>
               </v-btn>
               <!--              <v-btn icon>-->

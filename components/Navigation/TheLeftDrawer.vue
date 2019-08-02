@@ -18,7 +18,7 @@
       </v-layout>
 
       <v-btn icon @click.stop="drawer=false">
-        <v-icon>chevron_left</v-icon>
+        <v-icon>fa fa-angle-left</v-icon>
       </v-btn>
     </v-list-item>
     <v-divider></v-divider>
