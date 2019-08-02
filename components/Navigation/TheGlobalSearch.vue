@@ -82,7 +82,7 @@
         this.searchText = "";
         if ($nuxt.$route.path)
 
-          if (ctx.route.path !== "/") {
+          if ($nuxt.$route.path !== "/") {
             $nuxt.$router.push("/");
           }
 

@@ -131,11 +131,18 @@ export default {
   ** Build configuration
   */
   build: {
+    // splitChunks: {
+    //   layouts: true,
+    //   pages: true,
+    //   commons: true
+    // },
+
     /*
     ** You can extend webpack config here
     */
     extend(config, ctx) {
     },
+    analyze:false,
   },
   env: envSet,
   server: {
@@ -144,6 +151,23 @@ export default {
   },
   styleResources: {
     stylus: ['@/assets/style.styl'],
+  },
+
+  /* https://ja.nuxtjs.org/api/configuration-build/#terser */
+  terser: {
+    parallel: true,
+    cache: false,
+    sourceMap: false,
+    extractComments: {
+      filename: 'LICENSES',
+    },
+    terserOptions: {
+      compress: {
+        drop_console:true
+          // process.env.NODE_ENV === 'production' ||
+          // process.env.NODE_ENV === 'stage',
+      },
+    },
   },
 
 };

@@ -170,7 +170,7 @@ export const actions = {
         }),
       );
     } catch (e) {
-      console.warn(e);
+      console.warn(55,e);
       return Promise.reject(e);
     }
 
@@ -179,7 +179,7 @@ export const actions = {
       commit('setVideos', videoObj);
     }
 
-    if (!fetchedVideosObj.isAxiosError) {
+    if (fetchedVideosObj) {
       console.warn(33, fetchedVideosObj);
       dispatch('setInfo', fetchedVideosObj).catch(e => console.log(e));
     } else {

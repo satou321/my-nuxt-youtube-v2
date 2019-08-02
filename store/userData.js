@@ -29,7 +29,7 @@ export const actions = {
         // var providerData = user.providerData;
       };
     }
-    console.log("updateUser", _user);
+    // console.log("updateUser", _user);
     commit("updateUser", _user || false);
   },
 

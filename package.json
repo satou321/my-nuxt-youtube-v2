@@ -10,7 +10,8 @@
     "build:stg": "cross-env NODE_ENV=stage nuxt build",
     "start": "cross-env NODE_ENV=production nuxt start",
     "start:stg": "cross-env NODE_ENV=stage nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
