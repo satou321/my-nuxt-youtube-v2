@@ -119,7 +119,7 @@ export const actions = {
     }
 
     try {
-      const res = await this.$axios.$get(FROM.MOCK, {
+      const res = await this.$axios.$get(FROM.YOUTUBE, {
         params: {
           key: process.env.APIKEY,
           q: searchText || 'cute baby animals',
