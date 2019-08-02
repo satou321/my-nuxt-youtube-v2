@@ -1,6 +1,6 @@
 <template>
   <v-card
-    v-if="loadingAuth&&!user"
+    v-if="!loadingAuth&&!user"
     name="loginModal"
     transition="pop-out"
     width="400"
