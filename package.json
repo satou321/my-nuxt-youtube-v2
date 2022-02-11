@@ -32,7 +32,7 @@
     "jest": "^24.8.0",
     "node-sass": "^7.0.0",
     "nodemon": "^1.18.9",
-    "pug": "^2.0.4",
+    "pug": "^3.0.1",
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^7.1.0",
